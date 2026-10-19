@@ -170,6 +170,18 @@
     .badge { display: inline-block; padding: 6px 12px; font-size: 11px; font-weight: 800; letter-spacing: 2.4px; text-transform: uppercase; border: 1px solid currentColor; color: var(--gold); }
     .partner h3 { position: relative; font: 46px/1 var(--display); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
     .partner p { position: relative; color: var(--muted); max-width: 400px; }
+    .code {
+      position: relative; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-top: 22px; padding: 10px 10px 10px 18px; max-width: 360px;
+      border: 1.5px dashed rgba(239,230,212,.35); background: rgba(12,11,10,.55);
+    }
+    .code small { display: block; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .code strong { font: 28px/1.1 var(--display); letter-spacing: 3px; color: var(--text); }
+    .code button {
+      padding: 12px 16px; border: 0; cursor: pointer; background: var(--text); color: var(--ink);
+      font: 800 12px/1 Inter, sans-serif; letter-spacing: 1.5px; text-transform: uppercase; transition: background .2s, color .2s;
+    }
+    .code button:hover, .code button.ok { background: #00b4ff; color: #fff; }
     .riot { --glow: rgba(232, 40, 59, .55); }
     .logi { --glow: rgba(0, 180, 255, .35); }
 
@@ -317,7 +329,7 @@
         <div class="partners-mini">
           <small>Partner ufficiale</small>
           <div class="pm"><svg class="i" viewBox="0 0 24 24" aria-label="Riot Games"><path d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z" /></svg><span><em>Partner</em>Riot Games</span></div>
-          <div class="pm"><svg class="i" viewBox="0 0 24 24" aria-label="Logitech G"><path d="M12.5664 0C10.9101 0 9.352.3143 7.8887.9414c-1.4794.6271-2.766 1.483-3.8594 2.5684-1.0935 1.0854-1.9549 2.359-2.582 3.8222-.6432 1.4473-.9575 3-.9414 4.6563 0 1.6563.3142 3.2164.9414 4.6797.8537 1.9702 2.6764 4.7711 6.4414 6.3672C9.352 23.6784 10.91 24 12.5664 24v-4.9922c-.9809 0-1.8977-.1848-2.75-.5547-1.6852-.7313-2.9903-2.0167-3.7383-3.7402-.7467-1.7207-.736-3.755 0-5.4512.737-1.6981 2.0318-2.9977 3.7383-3.7383.8523-.3698 1.7691-.5546 2.75-.5546Zm.17 9.8418v4.9434h5.8124v5.8144h4.9453V9.8418Z" /></svg><span><em>Partner</em>Logitech G Italia</span></div>
+          <div class="pm"><svg class="i" viewBox="0 0 24 24" aria-label="Logitech G"><path d="M12.5664 0C10.9101 0 9.352.3143 7.8887.9414c-1.4794.6271-2.766 1.483-3.8594 2.5684-1.0935 1.0854-1.9549 2.359-2.582 3.8222-.6432 1.4473-.9575 3-.9414 4.6563 0 1.6563.3142 3.2164.9414 4.6797.8537 1.9702 2.6764 4.7711 6.4414 6.3672C9.352 23.6784 10.91 24 12.5664 24v-4.9922c-.9809 0-1.8977-.1848-2.75-.5547-1.6852-.7313-2.9903-2.0167-3.7383-3.7402-.7467-1.7207-.736-3.755 0-5.4512.737-1.6981 2.0318-2.9977 3.7383-3.7383.8523-.3698 1.7691-.5546 2.75-.5546Zm.17 9.8418v4.9434h5.8124v5.8144h4.9453V9.8418Z" /></svg><span><em>Codice ITSME10</em>Logitech G Italia</span></div>
         </div>
       </div>
     </div>
@@ -325,8 +337,8 @@
 
   <div class="ticker" aria-hidden="true">
     <div class="track">
-      <span>VALORANT</span><span>Riot Games Partner</span><span>Logitech G Italia</span><span>Tornei</span><span>Live su Twitch</span><span>Community ITSME</span><span>Esports</span>
-      <span>VALORANT</span><span>Riot Games Partner</span><span>Logitech G Italia</span><span>Tornei</span><span>Live su Twitch</span><span>Community ITSME</span><span>Esports</span>
+      <span>VALORANT</span><span>Riot Games Partner</span><span>Logitech G Italia</span><span>Codice ITSME10</span><span>Tornei</span><span>Live su Twitch</span><span>Community ITSME</span><span>Esports</span>
+      <span>VALORANT</span><span>Riot Games Partner</span><span>Logitech G Italia</span><span>Codice ITSME10</span><span>Tornei</span><span>Live su Twitch</span><span>Community ITSME</span><span>Esports</span>
     </div>
   </div>
 
@@ -353,6 +365,10 @@
           <div>
             <h3>Logitech G Italia</h3>
             <p>Partner di Logitech G Italia: setup, periferiche e contenuti per chi gioca sul serio.</p>
+            <div class="code">
+              <div><small>Codice sconto Logitech G</small><strong>ITSME10</strong></div>
+              <button type="button" data-copy="ITSME10">Copia</button>
+            </div>
           </div>
         </article>
       </div>
@@ -476,6 +492,17 @@
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Copia del codice sconto
+    document.querySelectorAll("[data-copy]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        navigator.clipboard?.writeText(btn.dataset.copy).then(() => {
+          btn.textContent = "Copiato!";
+          btn.classList.add("ok");
+          setTimeout(() => { btn.textContent = "Copia"; btn.classList.remove("ok"); }, 1800);
+        });
+      });
+    });
 
     // Player Twitch: richiede il dominio in "parent"
     document.getElementById("twitch-player").src =
