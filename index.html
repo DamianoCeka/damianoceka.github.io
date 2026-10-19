@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Damiano | itsme</title>
+  <meta name="description" content="Damiano, itsme_officialttv: content creator, organizzatore di tornei esports e community italiana di Valorant." />
+  <meta property="og:title" content="Damiano | itsme" />
+  <meta property="og:description" content="Content creator, esports organizer e community italiana di Valorant." />
+  <meta name="theme-color" content="#0f1923" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230f1923'/><path d='M14 14h10l26 36H40z' fill='%23ff4655'/><path d='M50 14v20L36 14z' fill='%23ece8e1'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1923;
+      --bg-2: #16232f;
+      --line: #263644;
+      --text: #ece8e1;
+      --muted: #8b978f;
+      --red: #ff4655;
+      --red-soft: rgba(255, 70, 85, .12);
+      --twitch: #9146ff;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font: 400 16px/1.6 Inter, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, 100% - 32px); margin-inline: auto; }
+
+    /* Navigazione */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(15, 25, 35, .85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font: 28px/1 "Bebas Neue", sans-serif; letter-spacing: 2px; }
+    .logo span { color: var(--red); }
+    .links { display: flex; gap: 28px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .links a { color: var(--muted); transition: color .2s; }
+    .links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; padding: 120px 0 110px; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(115deg, transparent 55%, var(--red-soft) 55%, var(--red-soft) 70%, transparent 70%),
+        radial-gradient(circle at 85% 20%, rgba(255, 70, 85, .18), transparent 45%);
+      pointer-events: none;
+    }
+    .tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 14px; border: 1px solid var(--line);
+      font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--muted);
+    }
+    .tag::before { content: ""; width: 8px; height: 8px; background: var(--red); }
+    h1 {
+      margin: 24px 0 8px;
+      font: clamp(64px, 13vw, 150px)/.9 "Bebas Neue", sans-serif;
+      letter-spacing: 2px;
+    }
+    h1 span { color: var(--red); }
+    .handle { font-size: clamp(18px, 3vw, 22px); color: var(--muted); font-weight: 500; }
+    .lead { max-width: 560px; margin: 24px 0 36px; font-size: 18px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 26px;
+      font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;
+      clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% - 12px) 100%, 0 100%);
+      transition: transform .15s, filter .2s;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-twitch { background: var(--twitch); color: #fff; }
+    .btn-ghost { background: var(--bg-2); border: 1px solid var(--line); }
+
+    /* Sezioni */
+    section { padding: 90px 0; border-top: 1px solid var(--line); }
+    .kicker { color: var(--red); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; }
+    h2 { font: clamp(40px, 7vw, 64px)/1 "Bebas Neue", sans-serif; letter-spacing: 1px; margin: 8px 0 40px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .card {
+      position: relative; padding: 28px;
+      background: var(--bg-2); border: 1px solid var(--line);
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--red); transform: translateY(-4px); }
+    .card::after {
+      content: ""; position: absolute; top: 0; right: 0;
+      border-style: solid; border-width: 0 22px 22px 0;
+      border-color: transparent var(--red) transparent transparent;
+      opacity: 0; transition: opacity .2s;
+    }
+    .card:hover::after { opacity: 1; }
+    .num { font: 44px/1 "Bebas Neue", sans-serif; color: var(--red); }
+    .card h3 { margin: 14px 0 8px; font-size: 19px; }
+    .card p { color: var(--muted); font-size: 15px; }
+
+    .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+    .about p + p { margin-top: 16px; }
+    .facts { display: grid; gap: 12px; }
+    .fact {
+      display: flex; justify-content: space-between; gap: 16px;
+      padding: 16px 20px; background: var(--bg-2); border-left: 3px solid var(--red);
+    }
+    .fact span:first-child { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .fact span:last-child { font-weight: 600; text-align: right; }
+
+    .project {
+      display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+      padding: 32px; background: linear-gradient(120deg, var(--bg-2), var(--bg) 80%);
+      border: 1px solid var(--line);
+    }
+    .project h3 { font-size: 22px; margin-bottom: 8px; }
+    .project p { color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .chip { padding: 4px 10px; font-size: 12px; font-weight: 600; border: 1px solid var(--line); color: var(--muted); }
+
+    .contact { text-align: center; }
+    .contact h2 { margin-bottom: 16px; }
+    .contact p { color: var(--muted); margin-bottom: 32px; }
+    .contact .cta { justify-content: center; }
+
+    footer { padding: 32px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 760px) {
+      .links { display: none; }
+      .hero { padding: 80px 0; }
+      section { padding: 64px 0; }
+      .about, .project { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <a class="logo" href="#">ITS<span>ME</span></a>
+      <div class="links">
+        <a href="#chi-sono">Chi sono</a>
+        <a href="#cosa-faccio">Cosa faccio</a>
+        <a href="#progetti">Progetti</a>
+        <a href="#contatti">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="tag">Italian Valorant Community</span>
+      <h1>Damiano<br /><span>itsme</span></h1>
+      <p class="handle">@itsme_officialttv</p>
+      <p class="lead">Content creator ed esports organizer. Porto in live la scena italiana di Valorant, organizzo tornei e faccio crescere una community di giocatori.</p>
+      <div class="cta">
+        <a class="btn btn-twitch" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 3 3 6.4v13.8h4.7V23h2.6l2.7-2.8h3.9L22 15V3H4.3Zm15.9 11.1-3 3h-4.7l-2.6 2.6v-2.6H5.9V4.7h14.3v9.4ZM17.4 8v5.1h-1.7V8h1.7Zm-4.7 0v5.1H11V8h1.7Z"/></svg>
+          Guarda le live
+        </a>
+        <a class="btn btn-ghost" href="#cosa-faccio">Scopri di più</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="chi-sono">
+    <div class="wrap about">
+      <div>
+        <p class="kicker">Chi sono</p>
+        <h2>Gaming, community e tecnologia</h2>
+        <p>Sono Damiano, per tutti itsme. Faccio stream, organizzo eventi competitivi e gestisco una community italiana dedicata a Valorant.</p>
+        <p>Di giorno lavoro nell'ICT: per questo mi piace costruire anche gli strumenti che servono alla community, come la dashboard per lo staff.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><span>Ruolo</span><span>Content Creator &amp; Esports Organizer</span></div>
+        <div class="fact"><span>Gioco</span><span>Valorant</span></div>
+        <div class="fact"><span>Partner</span><span>Riot &amp; Logitech G Italia</span></div>
+        <div class="fact"><span>Lavoro</span><span>ICT · BCC Annia</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cosa-faccio">
+    <div class="wrap">
+      <p class="kicker">Cosa faccio</p>
+      <h2>Dentro e fuori dalla live</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="num">01</div>
+          <h3>Live su Twitch</h3>
+          <p>Partite, ranked e serate con la community, in diretta su itsme_officialttv.</p>
+        </div>
+        <div class="card">
+          <div class="num">02</div>
+          <h3>Tornei ed eventi</h3>
+          <p>Organizzo competizioni esports: iscrizioni, bracket, regolamenti e premi.</p>
+        </div>
+        <div class="card">
+          <div class="num">03</div>
+          <h3>Community Valorant</h3>
+          <p>Uno spazio italiano dove trovare squadra, crescere e partecipare agli eventi.</p>
+        </div>
+        <div class="card">
+          <div class="num">04</div>
+          <h3>Partnership</h3>
+          <p>Collaboro con Riot e Logitech G Italia per portare contenuti ed eventi alla community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="progetti">
+    <div class="wrap">
+      <p class="kicker">Progetti</p>
+      <h2>Cosa sto costruendo</h2>
+      <div class="project">
+        <div>
+          <h3>Dashboard staff itsme</h3>
+          <p>Il pannello per lo staff della community: ruoli, ticket, valutazioni, crediti e premi, tutto in un'unica interfaccia.</p>
+          <div class="chips">
+            <span class="chip">Next.js</span>
+            <span class="chip">React</span>
+            <span class="chip">TypeScript</span>
+          </div>
+        </div>
+        <a class="btn btn-red" href="https://github.com/DamianoCeka" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatti" class="contact">
+    <div class="wrap">
+      <p class="kicker">Contatti</p>
+      <h2>Ci vediamo in live</h2>
+      <p>Per collaborazioni, eventi o tornei scrivimi su Twitch o su GitHub.</p>
+      <div class="cta">
+        <a class="btn btn-twitch" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">Twitch</a>
+        <a class="btn btn-ghost" href="https://github.com/DamianoCeka" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Damiano · itsme_officialttv</span>
+      <span>Fatto con GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
