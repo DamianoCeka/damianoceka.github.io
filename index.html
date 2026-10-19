@@ -3,307 +3,514 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Damiano | itsme</title>
-  <meta name="description" content="Damiano, itsme_officialttv: content creator, organizzatore di tornei esports e community italiana di Valorant." />
-  <meta property="og:title" content="Damiano | itsme" />
-  <meta property="og:description" content="Content creator, esports organizer e community italiana di Valorant." />
-  <meta name="theme-color" content="#0f1923" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230f1923'/><path d='M14 14h10l26 36H40z' fill='%23ff4655'/><path d='M50 14v20L36 14z' fill='%23ece8e1'/></svg>" />
+  <title>ITSME | Damiano · itsme_officialttv</title>
+  <meta name="description" content="ITSME: la community italiana di VALORANT di itsme_officialttv. Content creator, esports organizer, Riot Games Partner e Logitech G Italia." />
+  <meta property="og:title" content="ITSME | La tua community. Il tuo team." />
+  <meta property="og:description" content="Content creator ed esports organizer. Riot Games Partner e Logitech G Italia." />
+  <meta property="og:image" content="https://damianoceka.github.io/assets/og.jpg" />
+  <meta property="og:url" content="https://damianoceka.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0c0b0a" />
+  <link rel="icon" href="assets/favicon.webp" type="image/webp" />
+  <link rel="preload" as="image" href="assets/hero.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&text=%E5%8F%B8%E9%81%93&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0f1923;
-      --bg-2: #16232f;
-      --line: #263644;
-      --text: #ece8e1;
-      --muted: #8b978f;
-      --red: #ff4655;
-      --red-soft: rgba(255, 70, 85, .12);
-      --twitch: #9146ff;
+      --ink: #0c0b0a;
+      --ink-2: #151311;
+      --ink-3: #1e1b18;
+      --line: rgba(239, 230, 212, .1);
+      --paper: #efe6d4;
+      --paper-2: #e3d7bf;
+      --text: #efe6d4;
+      --muted: #9a9183;
+      --ink-text: #171412;
+      --red: #c8202f;
+      --red-hot: #e8283b;
+      --gold: #c9a24a;
+      --brush: "Permanent Marker", "Comic Sans MS", cursive;
+      --display: Anton, Impact, sans-serif;
+      --ease: cubic-bezier(.2, .7, .2, 1);
     }
-    * { box-sizing: border-box; margin: 0; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     body {
-      background: var(--bg);
+      background: var(--ink);
       color: var(--text);
-      font: 400 16px/1.6 Inter, system-ui, sans-serif;
+      font: 400 16px/1.65 Inter, system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    .wrap { width: min(1100px, 100% - 32px); margin-inline: auto; }
+    img { display: block; max-width: 100%; }
+    svg.i { width: 1em; height: 1em; fill: currentColor; flex: none; }
+    .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+    ::selection { background: var(--red); color: #fff; }
+
+    /* Grana su tutta la pagina */
+    body::after {
+      content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: .06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
 
     /* Navigazione */
-    nav {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(15, 25, 35, .85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
+    .nav {
+      position: fixed; inset: 0 0 auto; z-index: 50;
+      transition: background .3s, border-color .3s, color .3s;
+      border-bottom: 1px solid transparent; color: var(--ink-text);
+      background: rgba(239, 230, 212, .72); backdrop-filter: blur(12px);
     }
-    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { font: 28px/1 "Bebas Neue", sans-serif; letter-spacing: 2px; }
-    .logo span { color: var(--red); }
-    .links { display: flex; gap: 28px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-    .links a { color: var(--muted); transition: color .2s; }
-    .links a:hover { color: var(--text); }
+    .nav.solid { background: rgba(12, 11, 10, .82); backdrop-filter: blur(14px); border-color: var(--line); color: var(--text); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font: 26px/1 var(--brush); }
+    .brand img { width: 34px; height: auto; transition: filter .3s; }
+    .nav.solid .brand img { filter: invert(1) hue-rotate(180deg) saturate(1.4); }
+    .menu { display: flex; gap: 30px; font-size: 13px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; }
+    .menu a { opacity: .7; transition: opacity .2s; }
+    .menu a:hover { opacity: 1; }
+    .live {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+      font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      border: 1.5px solid currentColor; border-radius: 99px; transition: background .2s, color .2s, border-color .2s;
+    }
+    .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+    .live.on { background: var(--red); border-color: var(--red); color: #fff; }
+    .live.on i { background: #fff; animation: pulse 1.4s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,255,255,.7); } 100% { box-shadow: 0 0 0 10px rgba(255,255,255,0); } }
 
-    /* Hero */
-    .hero { position: relative; overflow: hidden; padding: 120px 0 110px; }
+    /* Hero su carta */
+    .hero {
+      position: relative; min-height: 100svh; display: flex; align-items: center;
+      background: var(--paper) url("assets/hero.webp") right center / cover no-repeat;
+      color: var(--ink-text); overflow: hidden; padding: 120px 0 90px;
+    }
     .hero::before {
       content: ""; position: absolute; inset: 0;
-      background:
-        linear-gradient(115deg, transparent 55%, var(--red-soft) 55%, var(--red-soft) 70%, transparent 70%),
-        radial-gradient(circle at 85% 20%, rgba(255, 70, 85, .18), transparent 45%);
-      pointer-events: none;
+      background: linear-gradient(90deg, var(--paper) 0%, rgba(239,230,212,.92) 38%, rgba(239,230,212,0) 66%);
     }
-    .tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 6px 14px; border: 1px solid var(--line);
-      font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--muted);
+    .hero::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 90px;
+      background: var(--ink);
+      clip-path: polygon(0 70%, 12% 55%, 30% 72%, 48% 48%, 63% 66%, 80% 40%, 100% 58%, 100% 100%, 0 100%);
     }
-    .tag::before { content: ""; width: 8px; height: 8px; background: var(--red); }
-    h1 {
-      margin: 24px 0 8px;
-      font: clamp(64px, 13vw, 150px)/.9 "Bebas Neue", sans-serif;
-      letter-spacing: 2px;
+    .hero .wrap { position: relative; z-index: 1; }
+    .hero-copy { max-width: 640px; }
+    .kicker {
+      display: flex; align-items: center; gap: 14px;
+      font-size: 13px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
     }
-    h1 span { color: var(--red); }
-    .handle { font-size: clamp(18px, 3vw, 22px); color: var(--muted); font-weight: 500; }
-    .lead { max-width: 560px; margin: 24px 0 36px; font-size: 18px; }
-    .cta { display: flex; flex-wrap: wrap; gap: 14px; }
+    .kicker::before, .kicker::after { content: ""; width: 38px; height: 2px; background: var(--gold); }
+    .hero h1 {
+      margin: 22px 0 10px; font: clamp(48px, 8.4vw, 104px)/.98 var(--brush); letter-spacing: -1px;
+    }
+    .hero h1 .r { color: var(--red); }
+    .stroke { display: block; width: min(420px, 80%); height: 22px; margin: 4px 0 26px; color: var(--red); }
+    .stroke path { stroke-dasharray: 520; stroke-dashoffset: 520; animation: draw 1.1s .5s var(--ease) forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .hero p.lead { font-size: 18px; max-width: 520px; color: #3b352f; }
+    .cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 34px 0 44px; }
     .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 26px;
-      font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px;
-      clip-path: polygon(0 0, 100% 0, 100% 70%, calc(100% - 12px) 100%, 0 100%);
-      transition: transform .15s, filter .2s;
+      position: relative; display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 26px; font-weight: 800; font-size: 14px; letter-spacing: 1.4px; text-transform: uppercase;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+      transition: transform .2s var(--ease), box-shadow .2s, background .2s;
     }
-    .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
-    .btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .btn .i { font-size: 18px; }
+    .btn:hover { transform: translateY(-3px); }
     .btn-red { background: var(--red); color: #fff; }
-    .btn-twitch { background: var(--twitch); color: #fff; }
-    .btn-discord { background: #5865f2; color: #fff; }
-    .discord {
-      display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center;
-      padding: 40px; background: linear-gradient(120deg, rgba(88, 101, 242, .18), var(--bg-2) 60%);
-      border: 1px solid var(--line);
-    }
-    .discord p { color: var(--muted); margin-bottom: 28px; max-width: 480px; }
-    .counts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .count { padding: 24px; background: var(--bg); border: 1px solid var(--line); }
-    .count strong { display: block; font: 56px/1 "Bebas Neue", sans-serif; letter-spacing: 1px; }
-    .count span { color: var(--muted); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
-    .count .dot { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #23a55a; }
-    .btn-tiktok { background: #000; color: #fff; border: 1px solid var(--line); }
-    .btn-ghost { background: var(--bg-2); border: 1px solid var(--line); }
+    .btn-red:hover { background: var(--red-hot); }
+    .btn-ink { background: var(--ink-text); color: var(--paper); }
+    .btn-ghost { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1.5px var(--line); }
+    .btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--text); }
+
+    .partners-mini { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+    .partners-mini small { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #6b6259; width: 100%; }
+    .pm { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 15px; }
+    .pm .i { font-size: 28px; }
+    .pm span em { display: block; font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); }
+    .pm + .pm { padding-left: 28px; border-left: 1.5px solid rgba(23,20,18,.18); }
+
+    /* Nastro scorrevole */
+    .ticker { position: relative; z-index: 2; margin-top: -10px; transform: rotate(-1.6deg); background: var(--red); color: #fff; overflow: hidden; }
+    .ticker .track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+    .ticker span { display: flex; align-items: center; gap: 28px; padding: 16px 14px; font: 22px/1 var(--display); letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
+    .ticker span::after { content: "✦"; color: var(--ink); font-size: 16px; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
 
     /* Sezioni */
-    section { padding: 90px 0; border-top: 1px solid var(--line); }
-    .kicker { color: var(--red); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; }
-    h2 { font: clamp(40px, 7vw, 64px)/1 "Bebas Neue", sans-serif; letter-spacing: 1px; margin: 8px 0 40px; }
+    section { position: relative; padding: 120px 0; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; color: var(--red-hot); font-size: 12px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h2 { margin: 14px 0 18px; font: clamp(40px, 6vw, 72px)/1 var(--brush); }
+    .sub { color: var(--muted); max-width: 560px; font-size: 17px; }
+    .head { margin-bottom: 56px; }
+    .kanji { position: absolute; right: 2%; top: 60px; font: 900 clamp(120px, 18vw, 260px)/1 "Noto Serif JP", serif; color: rgba(239,230,212,.03); writing-mode: vertical-rl; pointer-events: none; user-select: none; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .card {
-      position: relative; padding: 28px;
-      background: var(--bg-2); border: 1px solid var(--line);
-      transition: border-color .2s, transform .2s;
+    /* Partner */
+    .partners { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .partner {
+      position: relative; overflow: hidden; padding: 44px; min-height: 340px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
+      background: var(--ink-2); border: 1px solid var(--line);
+      transition: transform .35s var(--ease), border-color .35s;
     }
-    .card:hover { border-color: var(--red); transform: translateY(-4px); }
-    .card::after {
-      content: ""; position: absolute; top: 0; right: 0;
-      border-style: solid; border-width: 0 22px 22px 0;
-      border-color: transparent var(--red) transparent transparent;
-      opacity: 0; transition: opacity .2s;
+    .partner:hover { transform: translateY(-6px); border-color: rgba(239,230,212,.25); }
+    .partner::before {
+      content: ""; position: absolute; width: 520px; height: 520px; right: -200px; top: -220px; border-radius: 50%;
+      background: radial-gradient(circle, var(--glow) 0%, transparent 65%); opacity: .55; transition: opacity .35s, transform .6s var(--ease);
     }
-    .card:hover::after { opacity: 1; }
-    .num { font: 44px/1 "Bebas Neue", sans-serif; color: var(--red); }
-    .card h3 { margin: 14px 0 8px; font-size: 19px; }
-    .card p { color: var(--muted); font-size: 15px; }
+    .partner:hover::before { opacity: .9; transform: scale(1.1); }
+    .partner .logo-big { position: absolute; right: -30px; bottom: -40px; font-size: 240px; color: rgba(239,230,212,.05); transition: transform .6s var(--ease), color .35s; }
+    .partner:hover .logo-big { transform: rotate(-8deg) scale(1.05); color: rgba(239,230,212,.09); }
+    .partner .top { position: relative; display: flex; align-items: center; gap: 16px; }
+    .partner .top .i { font-size: 54px; }
+    .badge { display: inline-block; padding: 6px 12px; font-size: 11px; font-weight: 800; letter-spacing: 2.4px; text-transform: uppercase; border: 1px solid currentColor; color: var(--gold); }
+    .partner h3 { position: relative; font: 46px/1 var(--display); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .partner p { position: relative; color: var(--muted); max-width: 400px; }
+    .riot { --glow: rgba(232, 40, 59, .55); }
+    .logi { --glow: rgba(0, 180, 255, .35); }
 
-    .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
-    .about p + p { margin-top: 16px; }
-    .facts { display: grid; gap: 12px; }
-    .fact {
-      display: flex; justify-content: space-between; gap: 16px;
-      padding: 16px 20px; background: var(--bg-2); border-left: 3px solid var(--red);
+    /* Numeri */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat { padding: 40px 28px; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat strong { display: block; font: clamp(44px, 5vw, 64px)/1 var(--display); letter-spacing: 1px; }
+    .stat strong em { font-style: normal; color: var(--red-hot); }
+    .stat span { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #23a55a; box-shadow: 0 0 0 4px rgba(35,165,90,.2); }
+
+    /* Bento */
+    .bento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 18px; }
+    .tile {
+      position: relative; overflow: hidden; padding: 28px;
+      background: var(--ink-2); border: 1px solid var(--line);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      transition: border-color .3s, transform .3s var(--ease);
     }
-    .fact span:first-child { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-    .fact span:last-child { font-weight: 600; text-align: right; }
+    .tile:hover { border-color: rgba(239,230,212,.25); transform: translateY(-4px); }
+    .tile h3 { font: 26px/1.1 var(--brush); margin-bottom: 8px; }
+    .tile p { color: var(--muted); font-size: 15px; }
+    .tile .ico { position: absolute; top: 26px; left: 28px; width: 48px; height: 48px; display: grid; place-items: center; background: var(--ink-3); border: 1px solid var(--line); font-size: 22px; }
+    .tile.twitch { grid-column: span 2; grid-row: span 2; padding: 0; justify-content: flex-start; }
+    .tile.twitch .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; border-bottom: 1px solid var(--line); }
+    .tile.twitch .bar b { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+    .tile.twitch .bar .i { color: #9146ff; font-size: 22px; }
+    .tile.twitch iframe { flex: 1; width: 100%; border: 0; background: #000; }
+    .tile.tall { grid-row: span 2; background: linear-gradient(180deg, transparent, var(--ink-2) 70%), url("assets/hero-sm.webp") 78% 20% / 300% no-repeat; }
+    .tile.tall::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,11,10,.2), var(--ink-2) 75%); }
+    .tile.tall > * { position: relative; }
+    .tile.wide { grid-column: span 2; }
+    .tile.red { background: var(--red); border-color: var(--red); }
+    .tile.red p { color: rgba(255,255,255,.85); }
+    .tile.red .ico { background: rgba(0,0,0,.18); border-color: rgba(255,255,255,.2); }
+    .arrow { position: absolute; top: 26px; right: 26px; font-size: 22px; transition: transform .3s var(--ease); }
+    .tile:hover .arrow { transform: translate(4px, -4px); }
 
-    .project {
-      display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
-      padding: 32px; background: linear-gradient(120deg, var(--bg-2), var(--bg) 80%);
-      border: 1px solid var(--line);
+    /* Discord su carta */
+    .discord { background: var(--paper); color: var(--ink-text); overflow: hidden; }
+    .discord::before, .discord::after { content: ""; position: absolute; left: 0; right: 0; height: 70px; background: var(--ink); }
+    .discord::before { top: -1px; clip-path: polygon(0 0, 100% 0, 100% 30%, 82% 60%, 60% 35%, 40% 62%, 20% 38%, 0 58%); }
+    .discord::after { bottom: -1px; clip-path: polygon(0 52%, 18% 30%, 36% 58%, 58% 36%, 78% 62%, 100% 40%, 100% 100%, 0 100%); }
+    .discord .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 56px; }
+    .discord img.logo { width: 200px; }
+    .discord h2 { color: var(--ink-text); }
+    .discord .sub { color: #5a5148; }
+    .discord .eyebrow { color: var(--red); }
+    .live-counts { display: grid; gap: 14px; min-width: 240px; }
+    .lc { padding: 20px 24px; background: var(--ink-text); color: var(--paper); }
+    .lc strong { display: block; font: 48px/1 var(--display); letter-spacing: 1px; }
+    .lc span { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #b3a995; }
+
+    /* Link finali */
+    .socials { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .social {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 26px;
+      background: var(--ink-2); border: 1px solid var(--line); transition: background .3s, border-color .3s, transform .3s var(--ease);
     }
-    .project h3 { font-size: 22px; margin-bottom: 8px; }
-    .project p { color: var(--muted); }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .chip { padding: 4px 10px; font-size: 12px; font-weight: 600; border: 1px solid var(--line); color: var(--muted); }
+    .social:hover { transform: translateY(-4px); background: var(--c); border-color: var(--c); }
+    .social b { display: flex; align-items: center; gap: 12px; font-size: 17px; }
+    .social b .i { font-size: 26px; }
+    .social small { display: block; color: var(--muted); font-size: 13px; font-weight: 500; transition: color .3s; }
+    .social:hover small { color: rgba(255,255,255,.85); }
+    .community-site {
+      margin-top: 18px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 34px 36px;
+      background: linear-gradient(110deg, rgba(200,32,47,.22), var(--ink-2) 55%); border: 1px solid var(--line);
+      transition: border-color .3s;
+    }
+    .community-site:hover { border-color: var(--red); }
+    .community-site h3 { font: 30px/1.1 var(--brush); }
+    .community-site p { color: var(--muted); }
 
-    .contact { text-align: center; }
-    .contact h2 { margin-bottom: 16px; }
-    .contact p { color: var(--muted); margin-bottom: 32px; }
-    .contact .cta { justify-content: center; }
+    footer { padding: 48px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+    footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer .brand { color: var(--text); font-size: 22px; }
+    footer .brand img { filter: invert(1) hue-rotate(180deg) saturate(1.4); width: 28px; }
 
-    footer { padding: 32px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
-    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    /* Comparsa allo scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
 
-    @media (max-width: 760px) {
-      .links { display: none; }
-      .hero { padding: 80px 0; }
-      section { padding: 64px 0; }
-      .about, .project, .discord { grid-template-columns: 1fr; }
-      .discord { padding: 28px; }
+    @media (max-width: 980px) {
+      .menu { display: none; }
+      .partners, .discord .wrap { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(3) { border-left: 0; }
+      .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .bento { grid-template-columns: 1fr 1fr; }
+      .socials { grid-template-columns: 1fr 1fr; }
+      .discord .wrap { gap: 32px; }
+      .discord img.logo { width: 140px; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 88px 0; }
+      .hero { background-image: url("assets/hero-sm.webp"); background-position: 82% center; align-items: flex-end; }
+      .hero::before { background: linear-gradient(180deg, rgba(239,230,212,.55) 0%, rgba(239,230,212,.9) 42%, var(--paper) 70%); }
+      .partner { padding: 30px; min-height: 0; }
+      .partner h3 { font-size: 36px; }
+      .bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      .tile { min-height: 200px; }
+      .tile.twitch, .tile.wide { grid-column: auto; }
+      .tile.twitch { grid-row: auto; }
+      .tile.twitch iframe { aspect-ratio: 16 / 9; flex: none; }
+      .tile.tall { grid-row: auto; min-height: 320px; }
+      .socials { grid-template-columns: 1fr; }
+      .community-site { flex-direction: column; align-items: flex-start; padding: 28px; }
+      .stat { padding: 28px 18px; }
+      .pm + .pm { padding-left: 0; border-left: 0; }
+      .live b { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; scroll-behavior: auto !important; }
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+      .stroke path { stroke-dashoffset: 0; }
     }
   </style>
 </head>
 <body>
-  <nav>
+  <nav class="nav" id="nav">
     <div class="wrap">
-      <a class="logo" href="#">ITS<span>ME</span></a>
-      <div class="links">
-        <a href="#chi-sono">Chi sono</a>
+      <a class="brand" href="#top"><img src="assets/logo.webp" alt="" width="34" height="42" />ITSME</a>
+      <div class="menu">
+        <a href="#partner">Partner</a>
         <a href="#cosa-faccio">Cosa faccio</a>
         <a href="#community">Community</a>
-        <a href="#progetti">Progetti</a>
-        <a href="#contatti">Contatti</a>
+        <a href="#social">Social</a>
       </div>
+      <a class="live" id="live" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener"><i></i><span id="live-text">Twitch</span></a>
     </div>
   </nav>
 
-  <header class="hero">
+  <header class="hero" id="top">
     <div class="wrap">
-      <span class="tag">Italian Valorant Community</span>
-      <h1>Damiano<br /><span>itsme</span></h1>
-      <p class="handle">@itsme_officialttv</p>
-      <p class="lead">Content creator ed esports organizer. Porto in live la scena italiana di Valorant, organizzo tornei e faccio crescere una community di oltre 6.500 giocatori.</p>
-      <div class="cta">
-        <a class="btn btn-twitch" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 3 3 6.4v13.8h4.7V23h2.6l2.7-2.8h3.9L22 15V3H4.3Zm15.9 11.1-3 3h-4.7l-2.6 2.6v-2.6H5.9V4.7h14.3v9.4ZM17.4 8v5.1h-1.7V8h1.7Zm-4.7 0v5.1H11V8h1.7Z"/></svg>
-          Guarda le live
-        </a>
-        <a class="btn btn-discord" href="https://discord.gg/itsme" target="_blank" rel="noopener">Entra nel Discord</a>
+      <div class="hero-copy">
+        <p class="kicker">itsme_officialttv</p>
+        <h1>La tua community.<br /><span class="r">Il tuo team.</span></h1>
+        <svg class="stroke" viewBox="0 0 420 22" fill="none" aria-hidden="true"><path d="M4 14C70 6 150 4 230 8s130 6 186-2" stroke="currentColor" stroke-width="7" stroke-linecap="round" /></svg>
+        <p class="lead">Sono Damiano, per tutti <b>itsme</b>. Content creator ed esports organizer: porto in live la scena italiana di VALORANT e guido ITSME, una community di oltre 6.500 giocatori.</p>
+        <div class="cta">
+          <a class="btn btn-red" href="https://discord.gg/itsme" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" /></svg>Entra nel Discord</a>
+          <a class="btn btn-ink" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" /></svg>Guarda le live</a>
+        </div>
+        <div class="partners-mini">
+          <small>Partner ufficiale</small>
+          <div class="pm"><svg class="i" viewBox="0 0 24 24" aria-label="Riot Games"><path d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z" /></svg><span><em>Partner</em>Riot Games</span></div>
+          <div class="pm"><svg class="i" viewBox="0 0 24 24" aria-label="Logitech G"><path d="M12.5664 0C10.9101 0 9.352.3143 7.8887.9414c-1.4794.6271-2.766 1.483-3.8594 2.5684-1.0935 1.0854-1.9549 2.359-2.582 3.8222-.6432 1.4473-.9575 3-.9414 4.6563 0 1.6563.3142 3.2164.9414 4.6797.8537 1.9702 2.6764 4.7711 6.4414 6.3672C9.352 23.6784 10.91 24 12.5664 24v-4.9922c-.9809 0-1.8977-.1848-2.75-.5547-1.6852-.7313-2.9903-2.0167-3.7383-3.7402-.7467-1.7207-.736-3.755 0-5.4512.737-1.6981 2.0318-2.9977 3.7383-3.7383.8523-.3698 1.7691-.5546 2.75-.5546Zm.17 9.8418v4.9434h5.8124v5.8144h4.9453V9.8418Z" /></svg><span><em>Partner</em>Logitech G Italia</span></div>
+        </div>
       </div>
     </div>
   </header>
 
-  <section id="chi-sono">
-    <div class="wrap about">
-      <div>
-        <p class="kicker">Chi sono</p>
-        <h2>Gaming, community e tecnologia</h2>
-        <p>Sono Damiano, per tutti itsme. Faccio stream, organizzo eventi competitivi e gestisco una community italiana dedicata a Valorant.</p>
-        <p>Di giorno lavoro nell'ICT: per questo mi piace costruire anche gli strumenti che servono alla community, come la dashboard per lo staff.</p>
+  <div class="ticker" aria-hidden="true">
+    <div class="track">
+      <span>VALORANT</span><span>Riot Games Partner</span><span>Logitech G Italia</span><span>Tornei</span><span>Live su Twitch</span><span>Community ITSME</span><span>Esports</span>
+      <span>VALORANT</span><span>Riot Games Partner</span><span>Logitech G Italia</span><span>Tornei</span><span>Live su Twitch</span><span>Community ITSME</span><span>Esports</span>
+    </div>
+  </div>
+
+  <section id="partner">
+    <span class="kanji" aria-hidden="true">司道</span>
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Partner ufficiali</span>
+        <h2>Al fianco dei migliori</h2>
+        <p class="sub">Collaboro con i brand che fanno la scena: contenuti, eventi e tornei per la community italiana.</p>
       </div>
-      <div class="facts">
-        <div class="fact"><span>Ruolo</span><span>Content Creator &amp; Esports Organizer</span></div>
-        <div class="fact"><span>Gioco</span><span>Valorant</span></div>
-        <div class="fact"><span>Partner</span><span>Riot &amp; Logitech G Italia</span></div>
-        <div class="fact"><span>Lavoro</span><span>ICT · BCC Annia</span></div>
+      <div class="partners">
+        <article class="partner riot reveal">
+          <svg class="i logo-big" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z" /></svg>
+          <div class="top"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.458.86 0 7.093l3.353 12.761 2.552-.313-.701-8.024.838-.373 1.447 8.202 4.361-.535-.775-8.857.83-.37 1.591 9.025 4.412-.542-.849-9.708.84-.374 1.74 9.87L24 17.318V3.5Zm.316 19.356.222 1.256L24 23.14v-4.18l-10.22 1.256Z" /></svg><span class="badge">Partner ufficiale</span></div>
+          <div>
+            <h3>Riot Games</h3>
+            <p>Partner di Riot Games: contenuti, eventi e tornei di VALORANT per far crescere la scena italiana.</p>
+          </div>
+        </article>
+        <article class="partner logi reveal">
+          <svg class="i logo-big" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5664 0C10.9101 0 9.352.3143 7.8887.9414c-1.4794.6271-2.766 1.483-3.8594 2.5684-1.0935 1.0854-1.9549 2.359-2.582 3.8222-.6432 1.4473-.9575 3-.9414 4.6563 0 1.6563.3142 3.2164.9414 4.6797.8537 1.9702 2.6764 4.7711 6.4414 6.3672C9.352 23.6784 10.91 24 12.5664 24v-4.9922c-.9809 0-1.8977-.1848-2.75-.5547-1.6852-.7313-2.9903-2.0167-3.7383-3.7402-.7467-1.7207-.736-3.755 0-5.4512.737-1.6981 2.0318-2.9977 3.7383-3.7383.8523-.3698 1.7691-.5546 2.75-.5546Zm.17 9.8418v4.9434h5.8124v5.8144h4.9453V9.8418Z" /></svg>
+          <div class="top"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.5664 0C10.9101 0 9.352.3143 7.8887.9414c-1.4794.6271-2.766 1.483-3.8594 2.5684-1.0935 1.0854-1.9549 2.359-2.582 3.8222-.6432 1.4473-.9575 3-.9414 4.6563 0 1.6563.3142 3.2164.9414 4.6797.8537 1.9702 2.6764 4.7711 6.4414 6.3672C9.352 23.6784 10.91 24 12.5664 24v-4.9922c-.9809 0-1.8977-.1848-2.75-.5547-1.6852-.7313-2.9903-2.0167-3.7383-3.7402-.7467-1.7207-.736-3.755 0-5.4512.737-1.6981 2.0318-2.9977 3.7383-3.7383.8523-.3698 1.7691-.5546 2.75-.5546Zm.17 9.8418v4.9434h5.8124v5.8144h4.9453V9.8418Z" /></svg><span class="badge">Partner ufficiale</span></div>
+          <div>
+            <h3>Logitech G Italia</h3>
+            <p>Partner di Logitech G Italia: setup, periferiche e contenuti per chi gioca sul serio.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
+
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><strong data-count="members">6.500<em>+</em></strong><span>Membri Discord</span></div>
+      <div class="stat"><strong data-count="online">1.000<em>+</em></strong><span><i class="dot"></i>Online ora</span></div>
+      <div class="stat"><strong>2021</strong><span>Community dal</span></div>
+      <div class="stat"><strong>2<em>×</em></strong><span>Partner ufficiali</span></div>
+    </div>
+  </div>
 
   <section id="cosa-faccio">
     <div class="wrap">
-      <p class="kicker">Cosa faccio</p>
-      <h2>Dentro e fuori dalla live</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="num">01</div>
-          <h3>Live su Twitch</h3>
-          <p>Partite, ranked e serate con la community, in diretta su itsme_officialttv.</p>
-        </div>
-        <div class="card">
-          <div class="num">02</div>
-          <h3>Tornei ed eventi</h3>
-          <p>Organizzo competizioni esports: iscrizioni, bracket, regolamenti e premi.</p>
-        </div>
-        <div class="card">
-          <div class="num">03</div>
-          <h3>Community Valorant</h3>
-          <p>Uno spazio italiano dove trovare squadra, crescere e partecipare agli eventi.</p>
-        </div>
-        <div class="card">
-          <div class="num">04</div>
-          <h3>Partnership</h3>
-          <p>Collaboro con Riot e Logitech G Italia per portare contenuti ed eventi alla community.</p>
-        </div>
+      <div class="head reveal">
+        <span class="eyebrow">Cosa faccio</span>
+        <h2>Dentro e fuori dalla live</h2>
       </div>
-    </div>
-  </section>
-
-  <section id="community">
-    <div class="wrap">
-      <p class="kicker">Community</p>
-      <h2>Il Discord di itsme</h2>
-      <div class="discord">
-        <div>
-          <p>Il punto di ritrovo della community: trovi squadra, partecipi ai tornei, segui gli eventi e passi le serate in vocale con lo staff.</p>
-          <a class="btn btn-discord" href="https://discord.gg/itsme" target="_blank" rel="noopener">discord.gg/itsme</a>
-        </div>
-        <div class="counts">
-          <div class="count"><strong id="dc-members">6.500+</strong><span>Membri</span></div>
-          <div class="count"><strong id="dc-online">1.000+</strong><span><i class="dot"></i>Online ora</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="progetti">
-    <div class="wrap">
-      <p class="kicker">Progetti</p>
-      <h2>Cosa sto costruendo</h2>
-      <div class="project">
-        <div>
-          <h3>Dashboard staff itsme</h3>
-          <p>Il pannello per lo staff della community: ruoli, ticket, valutazioni, crediti e premi, tutto in un'unica interfaccia.</p>
-          <div class="chips">
-            <span class="chip">Next.js</span>
-            <span class="chip">React</span>
-            <span class="chip">TypeScript</span>
+      <div class="bento">
+        <div class="tile twitch reveal">
+          <div class="bar">
+            <b><svg class="i" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" /></svg>twitch.tv/itsme_officialttv</b>
+            <a class="badge" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">Segui</a>
           </div>
+          <iframe id="twitch-player" title="Live di itsme_officialttv su Twitch" loading="lazy" allowfullscreen></iframe>
         </div>
-        <a class="btn btn-red" href="https://github.com/DamianoCeka" target="_blank" rel="noopener">GitHub</a>
+        <a class="tile tall reveal" href="https://discord.gg/itsme" target="_blank" rel="noopener">
+          <span class="arrow">↗</span>
+          <h3>Community VALORANT</h3>
+          <p>Trova squadra, entra in vocale e partecipa agli eventi della community.</p>
+        </a>
+        <div class="tile red reveal">
+          <span class="ico">🏆</span>
+          <h3>Tornei</h3>
+          <p>Bracket, regolamenti e premi: organizzo competizioni per tutti i livelli.</p>
+        </div>
+        <a class="tile reveal" href="https://www.tiktok.com/@itsme_officialttv" target="_blank" rel="noopener">
+          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" /></svg></span>
+          <span class="arrow">↗</span>
+          <h3>Clip &amp; highlights</h3>
+          <p>Le giocate migliori delle live, su TikTok.</p>
+        </a>
+        <div class="tile wide reveal">
+          <span class="ico">⚙️</span>
+          <h3>Strumenti per lo staff</h3>
+          <p>Jarvis, il bot del server, e una dashboard per lo staff: ticket, ruoli, valutazioni e premi.</p>
+        </div>
+        <div class="tile wide reveal">
+          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M23.792 2.152a.252.252 0 0 0-.098.083c-3.384 4.23-6.769 8.46-10.15 12.69-.107.093-.025.288.119.265 2.439.003 4.877 0 7.316.001a.66.66 0 0 0 .552-.25c.774-.967 1.55-1.934 2.324-2.903a.72.72 0 0 0 .144-.49c-.002-3.077 0-6.153-.003-9.23.016-.11-.1-.206-.204-.167zM.077 2.166c-.077.038-.074.132-.076.205.002 3.074.001 6.15.001 9.225a.679.679 0 0 0 .158.463l7.64 9.55c.12.152.308.25.505.247 2.455 0 4.91.003 7.365 0 .142.02.222-.174.116-.265C10.661 15.176 5.526 8.766.4 2.35c-.08-.094-.174-.272-.322-.184z" /></svg></span>
+          <h3>VALORANT, sempre</h3>
+          <p>Ranked, scrim e serate con la community: il gioco al centro di tutto.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contatti" class="contact">
+  <section class="discord" id="community">
     <div class="wrap">
-      <p class="kicker">Contatti</p>
-      <h2>Ci vediamo in live</h2>
-      <p>Per collaborazioni, eventi o tornei scrivimi su Discord, Twitch, TikTok o GitHub.</p>
-      <div class="cta">
-        <a class="btn btn-twitch" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">Twitch</a>
-        <a class="btn btn-discord" href="https://discord.gg/itsme" target="_blank" rel="noopener">Discord</a>
-        <a class="btn btn-tiktok" href="https://www.tiktok.com/@itsme_officialttv" target="_blank" rel="noopener">TikTok</a>
-        <a class="btn btn-ghost" href="https://github.com/DamianoCeka" target="_blank" rel="noopener">GitHub</a>
+      <img class="logo reveal" src="assets/logo.webp" alt="Logo ITSME" width="375" height="460" loading="lazy" />
+      <div class="reveal">
+        <span class="eyebrow">Discord</span>
+        <h2>Unisciti a ITSME</h2>
+        <p class="sub">La migliore community di VALORANT in Italia: trovi squadra, partecipi ai tornei e passi le serate in vocale con lo staff.</p>
+        <div class="cta" style="margin-bottom:0">
+          <a class="btn btn-red" href="https://discord.gg/itsme" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" /></svg>discord.gg/itsme</a>
+        </div>
       </div>
+      <div class="live-counts reveal">
+        <div class="lc"><strong data-count="members">6.500+</strong><span>Membri</span></div>
+        <div class="lc"><strong data-count="online">1.000+</strong><span><i class="dot"></i>Online ora</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="social">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="eyebrow">Social</span>
+        <h2>Seguimi ovunque</h2>
+      </div>
+      <div class="socials">
+        <a class="social reveal" style="--c:#9146ff" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener"><b><svg class="i" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z" /></svg><span>Twitch<small>itsme_officialttv</small></span></b>↗</a>
+        <a class="social reveal" style="--c:#5865f2" href="https://discord.gg/itsme" target="_blank" rel="noopener"><b><svg class="i" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" /></svg><span>Discord<small>discord.gg/itsme</small></span></b>↗</a>
+        <a class="social reveal" style="--c:#fe2c55" href="https://www.tiktok.com/@itsme_officialttv" target="_blank" rel="noopener"><b><svg class="i" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" /></svg><span>TikTok<small>@itsme_officialttv</small></span></b>↗</a>
+        <a class="social reveal" style="--c:#3a3631" href="https://github.com/DamianoCeka" target="_blank" rel="noopener"><b><svg class="i" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg><span>GitHub<small>DamianoCeka</small></span></b>↗</a>
+      </div>
+      <a class="community-site reveal" href="https://itsmeofficialttv.org" target="_blank" rel="noopener">
+        <div>
+          <span class="eyebrow">Sito della community</span>
+          <h3>itsmeofficialttv.org</h3>
+          <p>Eventi, tornei e tutto quello che succede in ITSME.</p>
+        </div>
+        <span class="btn btn-red">Visita il sito ↗</span>
+      </a>
     </div>
   </section>
 
   <footer>
     <div class="wrap">
-      <span>© <span id="year">2026</span> Damiano · itsme_officialttv</span>
-      <span>Fatto con GitHub Pages</span>
+      <a class="brand" href="#top"><img src="assets/logo.webp" alt="" width="28" height="34" loading="lazy" />ITSME</a>
+      <span>© <span id="year">2026</span> Damiano · itsme_officialttv. Riot Games e Logitech G sono marchi dei rispettivi proprietari.</span>
     </div>
   </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Membri e online letti dall'invito pubblico: se la richiesta fallisce restano i valori statici
+    // Nav scura quando si lascia la hero
+    const nav = document.getElementById("nav");
+    const onScroll = () => nav.classList.toggle("solid", window.scrollY > window.innerHeight * 0.75);
+    onScroll();
+    addEventListener("scroll", onScroll, { passive: true });
+
+    // Comparsa delle sezioni
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Player Twitch: richiede il dominio in "parent"
+    document.getElementById("twitch-player").src =
+      "https://player.twitch.tv/?channel=itsme_officialttv&muted=true&autoplay=false&parent=" + location.hostname;
+
+    // Stato live
+    fetch("https://decapi.me/twitch/uptime/itsme_officialttv")
+      .then((r) => r.text())
+      .then((t) => {
+        const on = t && !/offline|error|not found/i.test(t);
+        document.getElementById("live").classList.toggle("on", on);
+        document.getElementById("live-text").textContent = on ? "Live ora" : "Offline";
+      })
+      .catch(() => {});
+
+    // Numeri del Discord dal vivo, con conteggio animato
+    const countUp = (el, to) => {
+      const fmt = (n) => Math.round(n).toLocaleString("it-IT");
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = fmt(to); return; }
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min(1, (now - start) / 1400);
+        el.textContent = fmt(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
     fetch("https://discord.com/api/v10/invites/itsme?with_counts=true")
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => {
-        const fmt = (n) => n.toLocaleString("it-IT");
-        if (d.approximate_member_count) document.getElementById("dc-members").textContent = fmt(d.approximate_member_count);
-        if (d.approximate_presence_count) document.getElementById("dc-online").textContent = fmt(d.approximate_presence_count);
+        const values = { members: d.approximate_member_count, online: d.approximate_presence_count };
+        document.querySelectorAll("[data-count]").forEach((el) => {
+          const v = values[el.dataset.count];
+          if (!v) return;
+          const run = new IntersectionObserver(([e]) => { if (e.isIntersecting) { countUp(el, v); run.disconnect(); } });
+          run.observe(el);
+        });
       })
       .catch(() => {});
   </script>
