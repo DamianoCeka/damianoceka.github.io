@@ -83,6 +83,18 @@
     .btn svg { width: 18px; height: 18px; fill: currentColor; }
     .btn-red { background: var(--red); color: #fff; }
     .btn-twitch { background: var(--twitch); color: #fff; }
+    .btn-discord { background: #5865f2; color: #fff; }
+    .discord {
+      display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; align-items: center;
+      padding: 40px; background: linear-gradient(120deg, rgba(88, 101, 242, .18), var(--bg-2) 60%);
+      border: 1px solid var(--line);
+    }
+    .discord p { color: var(--muted); margin-bottom: 28px; max-width: 480px; }
+    .counts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .count { padding: 24px; background: var(--bg); border: 1px solid var(--line); }
+    .count strong { display: block; font: 56px/1 "Bebas Neue", sans-serif; letter-spacing: 1px; }
+    .count span { color: var(--muted); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+    .count .dot { display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: #23a55a; }
     .btn-tiktok { background: #000; color: #fff; border: 1px solid var(--line); }
     .btn-ghost { background: var(--bg-2); border: 1px solid var(--line); }
 
@@ -141,7 +153,8 @@
       .links { display: none; }
       .hero { padding: 80px 0; }
       section { padding: 64px 0; }
-      .about, .project { grid-template-columns: 1fr; }
+      .about, .project, .discord { grid-template-columns: 1fr; }
+      .discord { padding: 28px; }
     }
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; scroll-behavior: auto !important; }
@@ -155,6 +168,7 @@
       <div class="links">
         <a href="#chi-sono">Chi sono</a>
         <a href="#cosa-faccio">Cosa faccio</a>
+        <a href="#community">Community</a>
         <a href="#progetti">Progetti</a>
         <a href="#contatti">Contatti</a>
       </div>
@@ -166,13 +180,13 @@
       <span class="tag">Italian Valorant Community</span>
       <h1>Damiano<br /><span>itsme</span></h1>
       <p class="handle">@itsme_officialttv</p>
-      <p class="lead">Content creator ed esports organizer. Porto in live la scena italiana di Valorant, organizzo tornei e faccio crescere una community di giocatori.</p>
+      <p class="lead">Content creator ed esports organizer. Porto in live la scena italiana di Valorant, organizzo tornei e faccio crescere una community di oltre 6.500 giocatori.</p>
       <div class="cta">
         <a class="btn btn-twitch" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 3 3 6.4v13.8h4.7V23h2.6l2.7-2.8h3.9L22 15V3H4.3Zm15.9 11.1-3 3h-4.7l-2.6 2.6v-2.6H5.9V4.7h14.3v9.4ZM17.4 8v5.1h-1.7V8h1.7Zm-4.7 0v5.1H11V8h1.7Z"/></svg>
           Guarda le live
         </a>
-        <a class="btn btn-ghost" href="#cosa-faccio">Scopri di più</a>
+        <a class="btn btn-discord" href="https://discord.gg/itsme" target="_blank" rel="noopener">Entra nel Discord</a>
       </div>
     </div>
   </header>
@@ -223,6 +237,23 @@
     </div>
   </section>
 
+  <section id="community">
+    <div class="wrap">
+      <p class="kicker">Community</p>
+      <h2>Il Discord di itsme</h2>
+      <div class="discord">
+        <div>
+          <p>Il punto di ritrovo della community: trovi squadra, partecipi ai tornei, segui gli eventi e passi le serate in vocale con lo staff.</p>
+          <a class="btn btn-discord" href="https://discord.gg/itsme" target="_blank" rel="noopener">discord.gg/itsme</a>
+        </div>
+        <div class="counts">
+          <div class="count"><strong id="dc-members">6.500+</strong><span>Membri</span></div>
+          <div class="count"><strong id="dc-online">1.000+</strong><span><i class="dot"></i>Online ora</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="progetti">
     <div class="wrap">
       <p class="kicker">Progetti</p>
@@ -246,9 +277,10 @@
     <div class="wrap">
       <p class="kicker">Contatti</p>
       <h2>Ci vediamo in live</h2>
-      <p>Per collaborazioni, eventi o tornei scrivimi su Twitch, TikTok o GitHub.</p>
+      <p>Per collaborazioni, eventi o tornei scrivimi su Discord, Twitch, TikTok o GitHub.</p>
       <div class="cta">
         <a class="btn btn-twitch" href="https://www.twitch.tv/itsme_officialttv" target="_blank" rel="noopener">Twitch</a>
+        <a class="btn btn-discord" href="https://discord.gg/itsme" target="_blank" rel="noopener">Discord</a>
         <a class="btn btn-tiktok" href="https://www.tiktok.com/@itsme_officialttv" target="_blank" rel="noopener">TikTok</a>
         <a class="btn btn-ghost" href="https://github.com/DamianoCeka" target="_blank" rel="noopener">GitHub</a>
       </div>
@@ -262,6 +294,18 @@
     </div>
   </footer>
 
-  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Membri e online letti dall'invito pubblico: se la richiesta fallisce restano i valori statici
+    fetch("https://discord.com/api/v10/invites/itsme?with_counts=true")
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => {
+        const fmt = (n) => n.toLocaleString("it-IT");
+        if (d.approximate_member_count) document.getElementById("dc-members").textContent = fmt(d.approximate_member_count);
+        if (d.approximate_presence_count) document.getElementById("dc-online").textContent = fmt(d.approximate_presence_count);
+      })
+      .catch(() => {});
+  </script>
 </body>
 </html>
